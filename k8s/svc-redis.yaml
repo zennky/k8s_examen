@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: vote
+  ## Anotacion que permite decirle a la nube que el balanceador tenga acceso por internet
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-deployment
+
+  ports:
+  - port: 6379
+    #protocol: TCP
+    targetPort: 6379
+    name: http-1
+
+# browser -> load-balancer-address:60000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-deployment
+  namespace: vote
+  labels:
+    app: vote-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: votedeployment
+  template:
+    metadata:
+      labels:
+        app: votedeployment
+    spec:
+      containers:
+      - name: vote
+        image: "wjma90/examplevotingapp_vote:before"
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http80          
+        

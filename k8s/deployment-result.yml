@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-deployment
+  namespace: vote
+  labels:
+    app: result-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultdeployment
+  template:
+    metadata:
+      labels:
+        app: resultdeployment
+    spec:
+      containers:
+      - name: result
+        image: "wjma90/examplevotingapp_result:before"
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http80          
+        

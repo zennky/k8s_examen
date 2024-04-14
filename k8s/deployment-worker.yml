@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+  namespace: vote
+  labels:
+    app: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workerdeployment
+  template:
+    metadata:
+      labels:
+        app: workerdeployment
+    spec:
+      containers:
+      - name: worker
+        image: "wjma90/examplevotingapp_worker"
+
+        
+
